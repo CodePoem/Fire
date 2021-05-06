@@ -2,8 +2,9 @@
 buildscript {
     ext.kotlin_version = "1.3.72"
     repositories {
-        google()
         mavenCentral()
+        google()
+        jcenter()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.3"
@@ -14,11 +15,26 @@ buildscript {
     }
 }
 
+/**
+ * 如果在多项目构建中，可能想把插件应用到子项目中，apply false 来告诉 Gradle 不要应用插件
+ *
+ * plugins {} 默认的行为是解析和应用插件
+ */
+plugins {
+    id 'com.vdreamers.version.plugin' apply false
+}
+
 allprojects {
     repositories {
-        google()
         mavenCentral()
+        google()
+        jcenter()
     }
+}
+
+subprojects { subproject ->
+    // 所有子项目依赖插件
+    subproject.apply plugin: 'com.vdreamers.version.plugin'
 }
 
 task clean(type: Delete) {

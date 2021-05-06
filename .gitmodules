@@ -1,0 +1,3 @@
+[submodule "versionPlugin"]
+    path = versionPlugin
+    url = git@github.com:CodePoem/VersionPlugin.git
