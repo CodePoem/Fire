@@ -2,7 +2,7 @@ import com.vdreamers.fire.AppBuildInfos
 import com.vdreamers.version.Deps
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("kotlin-android")
 }
 
@@ -11,13 +11,13 @@ android {
     buildToolsVersion(AppBuildInfos.BUILD_TOOLS_VERSION)
 
     defaultConfig {
-        applicationId(AppBuildInfos.APPLICATION_ID)
         minSdkVersion(AppBuildInfos.MIN_SDK_VERSION)
         targetSdkVersion(AppBuildInfos.TARGET_SDK_VERSION)
         versionCode(AppBuildInfos.VERSION_CODE)
         versionName(AppBuildInfos.VERSION_NAME)
 
         testInstrumentationRunner("androidx.test.runner.AndroidJUnitRunner")
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -25,8 +25,7 @@ android {
         release.apply {
             minifyEnabled(false)
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -40,12 +39,7 @@ android {
 }
 
 dependencies {
-    implementation(Deps.Kotlin.stdlib())
-    implementation(Deps.AndroidX.coreKtx())
-    implementation(Deps.AndroidX.appcompat())
-    implementation(Deps.AndroidX.constraintLayout())
-    implementation(Deps.Google.material())
-    implementation(project(":fire"))
+    compileOnly(Deps.Kotlin.stdlib())
 
     testImplementation(Deps.Test.junit())
     androidTestImplementation(Deps.AndroidTest.junit())
