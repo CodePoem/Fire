@@ -1,14 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlin_version = "1.3.72"
     repositories {
         mavenCentral()
         google()
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.1.3"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath("com.android.tools.build:gradle:4.1.3")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72")
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -21,7 +20,7 @@ buildscript {
  * plugins {} 默认的行为是解析和应用插件
  */
 plugins {
-    id 'com.vdreamers.version.plugin' apply false
+    id("com.vdreamers.version.plugin")
 }
 
 allprojects {
@@ -32,11 +31,14 @@ allprojects {
     }
 }
 
-subprojects { subproject ->
-    // 所有子项目依赖插件
-    subproject.apply plugin: 'com.vdreamers.version.plugin'
+subprojects {
+    afterEvaluate {
+        // 所有子项目依赖插件
+        apply(plugin = "com.vdreamers.version.plugin")
+    }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+tasks.register<Delete>(name = "clean") {
+    group = "build"
+    delete(rootProject.buildDir)
 }
