@@ -46,3 +46,5 @@ dependencies {
     androidTestImplementation(Deps.AndroidTest.junit())
     androidTestImplementation(Deps.AndroidTest.espressoCore())
 }
+
+apply(from = "${rootProject.projectDir}/publish.gradle")

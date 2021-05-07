@@ -1,0 +1,174 @@
+configurations {
+    publish
+    api.extendsFrom publish
+}
+
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+def pkgGroupId = PKG_GROUP_ID
+def pkgArtifactId = PKG_ARTIFACT_ID
+def pkgVersion = PKG_VERSION
+def pkgPackaging = PKG_PACKAGING
+
+group = pkgGroupId
+version = pkgVersion
+
+def getLocalRepositoryUrl() {
+    return uri("${rootDir}/.repos")
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+
+                def plugins = project.getPlugins()
+
+                if (plugins.hasPlugin('com.android.application') || plugins.hasPlugin('com.android.library')) {
+                    task androidSourcesJar(type: Jar) {
+                        archiveClassifier.set("sources")
+                        from android.sourceSets.main.java.srcDirs
+                    }
+
+                    artifact bundleReleaseAar
+                    artifact androidSourcesJar
+                } else {
+                    from components.java
+
+                    task sourcesJar(type: Jar, dependsOn: classes) {
+                        archiveClassifier.set("sources")
+                        from sourceSets.main.allSource
+                    }
+
+                    artifact sourcesJar
+                }
+
+                groupId pkgGroupId
+                artifactId pkgArtifactId
+                version pkgVersion
+
+                pom {
+                    packaging = pkgPackaging
+                    // 构件名称，可以自定义
+                    name = 'Fire'
+                    // 构件描述
+                    description = 'Android Logger Fire'
+                    // 构件主页
+                    url = 'https://github.com/CodePoem/Fire'
+                    // 许可证名称和地址
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    // 开发者信息
+                    developers {
+                        developer {
+                            name = 'CodePoem'
+                            email = 'codepoemfun@gmail.com'
+                        }
+                    }
+                    // 版本控制仓库地址
+                    scm {
+                        url = 'https://github.com/CodePoem/Fire'
+                        connection = 'scm:git:github.com/CodePoem/Fire.git'
+                        developerConnection = 'scm:git:ssh://git@github.com/CodePoem/Fire.git'
+                    }
+                }
+
+                pom.withXml {
+                    def dependenciesNode
+                    def dependenciesNodeList = asNode().get('dependencies')
+                    if (dependenciesNodeList.isEmpty()) {
+                        dependenciesNode = asNode().appendNode('dependencies')
+                    } else {
+                        dependenciesNode = dependenciesNodeList[0]
+                    }
+
+                    ext.addDependency = { String configurationName, Dependency dep, String scope ->
+                        if (dep.group == null || dep.version == null || dep.name == null || dep.name == "unspecified") {
+                            // ignore invalid dependencies
+                            return
+                        }
+
+                        final dependencyNode = dependenciesNode.appendNode('dependency')
+
+                        if (dep instanceof ProjectDependency && 'publish' == configurationName) {
+                            def targetProject = ((ProjectDependency) dep).dependencyProject
+                            dependencyNode.appendNode('groupId', targetProject.group)
+                            dependencyNode.appendNode('artifactId', targetProject.name)
+                            dependencyNode.appendNode('version', targetProject.version)
+                            dependencyNode.appendNode('scope', scope)
+                        } else {
+                            dependencyNode.appendNode('groupId', dep.group)
+                            dependencyNode.appendNode('artifactId', dep.name)
+                            dependencyNode.appendNode('version', dep.version)
+                            dependencyNode.appendNode('scope', scope)
+                        }
+
+                        if (!dep.transitive) {
+                            // If this dependency is transitive, we should force exclude all its dependencies them from the POM
+                            final exclusionNode = dependencyNode.appendNode('exclusions').appendNode('exclusion')
+                            exclusionNode.appendNode('groupId', '*')
+                            exclusionNode.appendNode('artifactId', '*')
+                        } else if (!dep.properties.excludeRules.empty) {
+                            // Otherwise add specified exclude rules
+                            final exclusionsNode = dependencyNode.appendNode('exclusions')
+                            dep.properties.excludeRules.each { ExcludeRule rule ->
+                                def exclusion = exclusionsNode.appendNode('exclusion')
+                                exclusion.appendNode('groupId', rule.group ?: '*')
+                                exclusion.appendNode('artifactId', rule.module ?: '*')
+                            }
+                        }
+                    }
+
+                    HashSet<Dependency> dependencies = new HashSet<>()
+
+                    configurations.publish.getAllDependencies().each { dep -> addDependency("publish", dep, "compile") }
+
+                    dependencies.addAll(configurations.api.getAllDependencies())
+                    dependencies.removeAll(configurations.publish.getAllDependencies())
+                    dependencies.each { dep -> addDependency("api", dep, "compile") }
+
+                    dependencies.addAll(configurations.implementation.getAllDependencies())
+                    dependencies.removeAll(configurations.api.getAllDependencies())
+                    dependencies.each { dep -> addDependency("implementation", dep, "runtime") }
+                }
+            }
+        }
+        repositories {
+            maven {
+                // 发布的位置，这里根据发布的版本区分了 LOCAL SNAPSHOT 和最终版本
+                def localRepoUrl = getLocalRepositoryUrl()
+                def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+                url = version.endsWith('LOCAL')? localRepoUrl : (version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl)
+                credentials {
+                    def sonatypeUsername = ""
+                    def sonatypePassword = ""
+                    // local.properties file in the root director
+                    def keyFile = project.rootProject.file('local.properties')
+                    if (keyFile.exists()) {
+                        Properties properties = new Properties()
+                        properties.load(keyFile.newDataInputStream())
+                        if (properties.containsKey("sonatype.username")) {
+                            sonatypeUsername = properties.getProperty("sonatype.username")
+                        }
+                        if (properties.containsKey("sonatype.password")) {
+                            sonatypePassword = properties.getProperty("sonatype.password")
+                        }
+                    }
+                    // issues.sonatype.org 注册的账号
+                    username sonatypeUsername
+                    password sonatypePassword
+                }
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications
+}
