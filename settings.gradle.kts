@@ -1,6 +1,6 @@
 include(":fire")
 include(":fire-core")
-include(":app")
+include(":sample")
 rootProject.name = "Fire"
 
 includeBuild("versionPlugin")

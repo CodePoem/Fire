@@ -1,20 +1,18 @@
 @file:Suppress("unused")
 
-package com.vdreamers.fire
+package com.vdreamers.fire.core
 
 import android.app.Application
-import com.vdreamers.fire.core.FireHelper
+import android.util.Log
 
-fun Application.initLogger(isDebug: Boolean = true) {
-    FireHelper.setLogger(Fire)
-    if (isDebug) {
-        Fire.burn(DebugFlame())
-    } else {
-        Fire.burn(DebugFlame())
-        // can burn other flame
+typealias InitAction = () -> Unit
+
+fun Application.initLogger(initAction: InitAction?) {
+    try {
+        initAction?.invoke()
+    } catch (e: Exception) {
+        Log.d("LoggerExt", "initLogger error: ${e.message}")
     }
-
-    FireHelper.d("initLogger successfully, isDebug = $isDebug")
 }
 
 fun Map<String, Any>.d() = FireHelper.d(this)

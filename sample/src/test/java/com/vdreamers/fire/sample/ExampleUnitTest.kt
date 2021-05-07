@@ -1,4 +1,4 @@
-package com.vdreamers.fire
+package com.vdreamers.fire.sample
 
 import org.junit.Test
 

@@ -1,7 +1,9 @@
-package com.vdreamers.fire
+package com.vdreamers.fire.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.vdreamers.fire.core.d
+import com.vdreamers.fire.core.w
 
 class MainActivity : AppCompatActivity() {
 
