@@ -1,0 +1,59 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.github.codepoem",
+    "module": "fire-core",
+    "version": "1.0.1-LOCAL",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.5",
+      "buildId": "ui7dltzkybfzplpb2pv6urkfbm"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "fire-core-1.0.1-LOCAL.aar",
+          "url": "fire-core-1.0.1-LOCAL.aar",
+          "size": 7906,
+          "sha512": "b4ec4fc9f7f40cb44358a7289d5d8cbbee63fc6922e2269795e5517be86150d6f657975f4a81c71a9aa38e160984786752bdc67aa01cd4699dc251e72d87a9d4",
+          "sha256": "021218da519f011a63b23e5f6a6ab4828e85fd401dd74c7f819f846a0dfc5a54",
+          "sha1": "e735edb5efabe2148b6ad0a0a4a6893605db5542",
+          "md5": "3e548ee1a6903f4f4bd9137cf42c04da"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "fire-core-1.0.1-LOCAL.aar",
+          "url": "fire-core-1.0.1-LOCAL.aar",
+          "size": 7906,
+          "sha512": "b4ec4fc9f7f40cb44358a7289d5d8cbbee63fc6922e2269795e5517be86150d6f657975f4a81c71a9aa38e160984786752bdc67aa01cd4699dc251e72d87a9d4",
+          "sha256": "021218da519f011a63b23e5f6a6ab4828e85fd401dd74c7f819f846a0dfc5a54",
+          "sha1": "e735edb5efabe2148b6ad0a0a4a6893605db5542",
+          "md5": "3e548ee1a6903f4f4bd9137cf42c04da"
+        }
+      ]
+    }
+  ]
+}

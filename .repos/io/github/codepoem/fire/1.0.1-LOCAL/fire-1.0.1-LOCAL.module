@@ -1,0 +1,77 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.github.codepoem",
+    "module": "fire",
+    "version": "1.0.1-LOCAL",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.5",
+      "buildId": "ui7dltzkybfzplpb2pv6urkfbm"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "io.github.codepoem",
+          "module": "fire-core",
+          "version": {
+            "requires": "1.0.1-LOCAL"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "fire-1.0.1-LOCAL.aar",
+          "url": "fire-1.0.1-LOCAL.aar",
+          "size": 17850,
+          "sha512": "3689c5145d218989235016ff3f39c64d0b55e10bf9abaf5c5cb59f9413d1952dee0d211f1ef3b7b5138ca23a77440dc5dc7baad7ef4b0a96c107f5aa0593845a",
+          "sha256": "9997eceaab66b7c6b3afd08171e7d0c0eed52f2e1a6d06845b8d187a6bb04b74",
+          "sha1": "4a486f6b266c47ddb75afbad8ef00863b2589d60",
+          "md5": "541064639d3aee4176b56782c042b84a"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "io.github.codepoem",
+          "module": "fire-core",
+          "version": {
+            "requires": "1.0.1-LOCAL"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "fire-1.0.1-LOCAL.aar",
+          "url": "fire-1.0.1-LOCAL.aar",
+          "size": 17850,
+          "sha512": "3689c5145d218989235016ff3f39c64d0b55e10bf9abaf5c5cb59f9413d1952dee0d211f1ef3b7b5138ca23a77440dc5dc7baad7ef4b0a96c107f5aa0593845a",
+          "sha256": "9997eceaab66b7c6b3afd08171e7d0c0eed52f2e1a6d06845b8d187a6bb04b74",
+          "sha1": "4a486f6b266c47ddb75afbad8ef00863b2589d60",
+          "md5": "541064639d3aee4176b56782c042b84a"
+        }
+      ]
+    }
+  ]
+}

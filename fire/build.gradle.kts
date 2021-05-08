@@ -21,6 +21,14 @@ android {
     }
 
     buildTypes {
+        val debug = getByName("debug")
+        debug.apply {
+            minifyEnabled(false)
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
         val release = getByName("release")
         release.apply {
             minifyEnabled(false)

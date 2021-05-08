@@ -21,6 +21,14 @@ android {
     }
 
     buildTypes {
+        val debug = getByName("debug")
+        debug.apply {
+            minifyEnabled(false)
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
         val release = getByName("release")
         release.apply {
             minifyEnabled(false)
@@ -45,7 +53,7 @@ dependencies {
     implementation(Deps.AndroidX.appcompat())
     implementation(Deps.AndroidX.constraintLayout())
     implementation(Deps.Google.material())
-    implementation(project(":fire"))
+    implementation("io.github.codepoem:fire:1.0.1-LOCAL")
 
     testImplementation(Deps.Test.junit())
     androidTestImplementation(Deps.AndroidTest.junit())
