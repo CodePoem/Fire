@@ -23,7 +23,7 @@ buildscript {
  * plugins {} 默认的行为是解析和应用插件
  */
 plugins {
-    id("com.vdreamers.version.plugin")
+    id("com.vdreamers.version.plugin") apply false
 }
 
 allprojects {
