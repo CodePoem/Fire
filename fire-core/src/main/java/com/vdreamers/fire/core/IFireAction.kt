@@ -1,11 +1,27 @@
+/*
+ * Copyright 2021 CodePoem
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.vdreamers.fire.core
 
 /**
- * 日志行为接口 暴露给日志具体实现类 Api
+ * Log Action interface exposed Log final impl Api
  * <p>
- * date 2021/05/07 00:02:53
+ * date 2021/05/26 16:15:03
  *
- * @author <a href="mailto:codepoetdream@gmail.com">Mr D</a>
+ * @author <a href="mailto:codepoetdream@gmail.com">Code Poem</a>
  */
 interface IFireAction {
 
