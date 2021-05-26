@@ -15,8 +15,9 @@ class App : Application() {
             val isDebug = BuildConfig.DEBUG
             if (isDebug) {
                 Fire.burn(DebugFlame())
+                Fire.burn(TestFlame())
             } else {
-                Fire.burn(DebugFlame())
+                Fire.burn(TestFlame())
                 // can burn other flame
             }
         }

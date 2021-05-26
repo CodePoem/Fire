@@ -1,4 +1,4 @@
-import com.vdreamers.fire.AppBuildInfos
+import com.vdreamers.fire.AppBuildConfigs
 import com.vdreamers.version.Deps
 
 plugins {
@@ -7,14 +7,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion(AppBuildInfos.COMPILE_SDK_VERSION)
-    buildToolsVersion(AppBuildInfos.BUILD_TOOLS_VERSION)
+    compileSdkVersion(AppBuildConfigs.COMPILE_SDK_VERSION)
+    buildToolsVersion(AppBuildConfigs.BUILD_TOOLS_VERSION)
 
     defaultConfig {
-        minSdkVersion(AppBuildInfos.MIN_SDK_VERSION)
-        targetSdkVersion(AppBuildInfos.TARGET_SDK_VERSION)
-        versionCode(AppBuildInfos.VERSION_CODE)
-        versionName(AppBuildInfos.VERSION_NAME)
+        minSdkVersion(AppBuildConfigs.MIN_SDK_VERSION)
+        targetSdkVersion(AppBuildConfigs.TARGET_SDK_VERSION)
+        versionCode(AppBuildConfigs.VERSION_CODE)
+        versionName(AppBuildConfigs.VERSION_NAME)
 
         testInstrumentationRunner("androidx.test.runner.AndroidJUnitRunner")
         consumerProguardFiles("consumer-rules.pro")

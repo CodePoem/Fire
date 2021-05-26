@@ -2,14 +2,18 @@ package com.vdreamers.fire
 
 import android.os.Build
 import android.util.Log
+import com.vdreamers.fire.core.FireHelper
 import java.util.regex.Pattern
 
 open class DebugFlame : Flame() {
     private val fqcnIgnore = listOf(
         Fire::class.java.name,
-        Fire::class.java.name,
+        Fire.Blazing::class.java.name,
         Flame::class.java.name,
-        DebugFlame::class.java.name
+        DebugFlame::class.java.name,
+        FireHelper::class.java.name,
+        FireHelper.FireHelperExt::class.java.name,
+        "com.vdreamers.fire.core.LoggerExtKt"
     )
 
     override val tag: String?

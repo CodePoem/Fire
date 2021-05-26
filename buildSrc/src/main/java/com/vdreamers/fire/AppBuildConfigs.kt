@@ -1,6 +1,6 @@
 package com.vdreamers.fire
 
-object AppBuildInfos {
+object AppBuildConfigs {
 
     const val COMPILE_SDK_VERSION = 30
     const val BUILD_TOOLS_VERSION = "30.0.3"

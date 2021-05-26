@@ -15,52 +15,80 @@ fun Application.initLogger(initAction: InitAction?) {
     }
 }
 
-fun Map<String, Any>.d() = FireHelper.d(this)
+fun logV(message: String?) = FireHelper.v(message)
 
-fun String.d() = FireHelper.d(this)
+fun logV(custom: Map<String, Any>?) = FireHelper.v(custom)
 
-fun String.d(custom: Map<String, Any>) = FireHelper.d(this, custom)
+fun logV(message: String?, custom: Map<String, Any>?) = FireHelper.v(message, custom)
 
-fun Throwable.d() = FireHelper.d(this, "")
+fun logV(t: Throwable?, message: String?) = FireHelper.v(t, message)
 
-fun Throwable.d(message: String) = FireHelper.d(this, message)
+fun logV(t: Throwable?, custom: Map<String, Any>?) = FireHelper.v(t, custom)
 
-fun Throwable.d(custom: Map<String, Any>) = FireHelper.d(this, custom)
+fun logV(t: Throwable?, message: String?, custom: Map<String, Any>?) =
+    FireHelper.v(t, message, custom)
 
-fun Map<String, Any>.i() = FireHelper.i(this)
+fun logD(message: String?) = FireHelper.d(message)
 
-fun String.i() = FireHelper.i(this)
+fun logD(custom: Map<String, Any>?) = FireHelper.d(custom)
 
-fun String.i(custom: Map<String, Any>) = FireHelper.i(this, custom)
+fun logD(message: String?, custom: Map<String, Any>?) = FireHelper.d(message, custom)
 
-fun Throwable.i() = FireHelper.i(this, "")
+fun logD(t: Throwable?, message: String?) = FireHelper.d(t, message)
 
-fun Throwable.i(message: String) = FireHelper.i(this, message)
+fun logD(t: Throwable?, custom: Map<String, Any>?) = FireHelper.d(t, custom)
 
-fun Throwable.i(custom: Map<String, Any>) = FireHelper.i(this, custom)
+fun logD(t: Throwable?, message: String?, custom: Map<String, Any>?) =
+    FireHelper.d(t, message, custom)
 
-fun Map<String, Any>.w() = FireHelper.w(this)
+fun logI(message: String?) = FireHelper.i(message)
 
-fun String.w() = FireHelper.w(this)
+fun logI(custom: Map<String, Any>?) = FireHelper.i(custom)
 
-fun String.w(custom: Map<String, Any>) = FireHelper.w(this, custom)
+fun logI(message: String?, custom: Map<String, Any>?) = FireHelper.i(message, custom)
 
-fun Throwable.w() = FireHelper.w(this, "")
+fun logI(t: Throwable?, message: String?) = FireHelper.i(t, message)
 
-fun Throwable.w(message: String) = FireHelper.w(this, message)
+fun logI(t: Throwable?, custom: Map<String, Any>?) = FireHelper.i(t, custom)
 
-fun Throwable.w(custom: Map<String, Any>) = FireHelper.w(this, custom)
+fun logI(t: Throwable?, message: String?, custom: Map<String, Any>?) =
+    FireHelper.i(t, message, custom)
 
-fun Map<String, Any>.e() = FireHelper.e(this)
+fun logW(message: String?) = FireHelper.w(message)
 
-fun String.e() = FireHelper.e(this)
+fun logW(custom: Map<String, Any>?) = FireHelper.w(custom)
 
-fun String.e(custom: Map<String, Any>) = FireHelper.e(this, custom)
+fun logW(message: String?, custom: Map<String, Any>?) = FireHelper.w(message, custom)
 
-fun Throwable.e() = FireHelper.e(this, "")
+fun logW(t: Throwable?, message: String?) = FireHelper.w(t, message)
 
-fun Throwable.e(message: String) = FireHelper.e(this, message)
+fun logW(t: Throwable?, custom: Map<String, Any>?) = FireHelper.w(t, custom)
 
-fun Throwable.e(custom: Map<String, Any>) = FireHelper.e(this, custom)
+fun logW(t: Throwable?, message: String?, custom: Map<String, Any>?) =
+    FireHelper.w(t, message, custom)
 
-fun Throwable.e(message: String, custom: Map<String, Any>) = FireHelper.e(this, message, custom)
+fun logE(message: String?) = FireHelper.e(message)
+
+fun logE(custom: Map<String, Any>?) = FireHelper.e(custom)
+
+fun logE(message: String?, custom: Map<String, Any>?) = FireHelper.e(message, custom)
+
+fun logE(t: Throwable?, message: String?) = FireHelper.e(t, message)
+
+fun logE(t: Throwable?, custom: Map<String, Any>?) = FireHelper.e(t, custom)
+
+fun logE(t: Throwable?, message: String?, custom: Map<String, Any>?) =
+    FireHelper.e(t, message, custom)
+
+fun logWtf(message: String?) = FireHelper.wtf(message)
+
+fun logWtf(custom: Map<String, Any>?) = FireHelper.wtf(custom)
+
+fun logWtf(message: String?, custom: Map<String, Any>?) = FireHelper.wtf(message, custom)
+
+fun logWtf(t: Throwable?, message: String?) = FireHelper.wtf(t, message)
+
+fun logWtf(t: Throwable?, custom: Map<String, Any>?) = FireHelper.wtf(t, custom)
+
+fun logWtf(t: Throwable?, message: String?, custom: Map<String, Any>?) =
+    FireHelper.wtf(t, message, custom)
